@@ -31,8 +31,7 @@ The system implements a proactive security lifecycle for sensitive data:
     ```bash
     terraform init
     terraform apply -auto-approve
-    
-```
+    ```
 
 ## Verification & Testing
 
@@ -42,30 +41,26 @@ To observe the secret rotation in action:
     ```bash
     awslocal secretsmanager get-secret-value --secret-id sysops-lab-db-password
     aws secretsmanager get-secret-value --secret-id sysops-lab-db-password
-    
-```
+    ```
 
 2.  **Manually Trigger Rotation:**
     ```bash
     awslocal secretsmanager rotate-secret --secret-id sysops-lab-db-password
     aws secretsmanager rotate-secret --secret-id sysops-lab-db-password
-    
-```
+    ```
 
 3.  **Verify New Version:**
     After rotation, retrieve the secret again to confirm the password has changed:
     ```bash
     awslocal secretsmanager get-secret-value --secret-id sysops-lab-db-password
     aws secretsmanager get-secret-value --secret-id sysops-lab-db-password
-    
-```
+    ```
 
 4.  **Inspect Secret Metadata:**
     ```bash
     awslocal secretsmanager describe-secret --secret-id sysops-lab-db-password
     aws secretsmanager describe-secret --secret-id sysops-lab-db-password
-    
-```
+    ```
     Confirm the `LastRotatedDate` and the `RotationEnabled` status.
 
 ## Cleanup
